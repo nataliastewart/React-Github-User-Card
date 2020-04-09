@@ -5,35 +5,41 @@ import UserCard from "./UserCard";
 
 class App extends React.Component {
   constructor() {
+    //first phase
     super();
     this.state = {
       username: "",
       followers: [],
     };
+    console.log("constructor is running");
   }
 
   componentDidMount() {
+    //fetching my data
     axios
       .get("https://api.github.com/users/nataliastewart")
       .then((response) => {
         console.log("DATA", response.data);
         this.setState({
-          followers: response.data.login,
-        }).catch((error) => {
-          console.log("Error componentDidMount", error);
+          followers: response.data,
         });
+      })
+      .catch((error) => {
+        console.log("Error componentDidMount", error);
       });
+
+    console.log("DIDMOUNT IS RUNNING");
   }
 
   render() {
+    //Second phase
+    console.log("rendering");
+    console.log(this.state.followers);
     return (
       <div className="App">
-        {/* <FollowersList followers={this.state.followers} /> */}
-        <h3>
-          {props.followers.map((item) => (
-            <UserCard key={item.id} item={item} />
-          ))}
-        </h3>
+        <FollowersList followers={this.state.followers} />
+
+        {/* <UserCard key={item.id} item={item} /> */}
       </div>
     );
   }

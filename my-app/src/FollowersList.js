@@ -1,12 +1,15 @@
-// import React from "react";
-// import UserCard from "./UserCard";
+import React from "react";
+import UserCard from "./UserCard";
 
-// export default function FollowersList(props) {
-//   return (
-//     <div>
-//       {props.followers.map((item) => (
-//         <UserCard key={item.id} item={item} />
-//       ))}
-//     </div>
-//   );
-// }
+export default function FollowersList(props) {
+  return (
+    <div>
+      <h4>{props.followers.login}</h4>
+      <img src={props.followers.avatar_url} alt="follower"></img>
+    </div>
+  );
+}
+
+{
+  /* // <UserCard key={item.id} item={item} /> */
+}
