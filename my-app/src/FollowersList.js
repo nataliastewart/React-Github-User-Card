@@ -4,8 +4,8 @@ import UserCard from "./UserCard";
 export default function FollowersList(props) {
   return (
     <div>
-      <h4>{props.followers.login}</h4>
-      <img src={props.followers.avatar_url} alt="follower"></img>
+      <h4>{props.person.login}</h4>
+      <img src={props.person.avatar_url} alt="follower"></img>
     </div>
   );
 }

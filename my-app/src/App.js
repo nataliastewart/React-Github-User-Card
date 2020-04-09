@@ -9,6 +9,7 @@ class App extends React.Component {
     super();
     this.state = {
       username: "",
+      person: {},
       followers: [],
     };
     console.log("constructor is running");
@@ -21,14 +22,23 @@ class App extends React.Component {
       .then((response) => {
         console.log("DATA", response.data);
         this.setState({
+          person: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log("Error componentDidMount", error);
+      });
+    axios
+      .get("https://api.github.com/users/nataliastewart/followers")
+      .then((response) => {
+        console.log("DATA", response.data);
+        this.setState({
           followers: response.data,
         });
       })
       .catch((error) => {
         console.log("Error componentDidMount", error);
       });
-
-    console.log("DIDMOUNT IS RUNNING");
   }
 
   render() {
@@ -37,9 +47,9 @@ class App extends React.Component {
     console.log(this.state.followers);
     return (
       <div className="App">
-        <FollowersList followers={this.state.followers} />
+        <FollowersList person={this.state.person} />
 
-        {/* <UserCard key={item.id} item={item} /> */}
+        <UserCard followers={this.state.followers} />
       </div>
     );
   }
