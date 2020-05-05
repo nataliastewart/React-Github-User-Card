@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import UsersList from "./components/UsersList";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
   constructor() {
@@ -17,7 +18,9 @@ class App extends React.Component {
   componentDidMount() {
     //fetching data here
     axios
-      .get("https://api.github.com/users/nataliastewart")
+      .get(
+        "https://cors-anywhere.herokuapp.com/https://api.github.com/users/nataliastewart"
+      )
       .then((res) =>
         // console.log("response: ", res)
         this.setState({
@@ -28,7 +31,9 @@ class App extends React.Component {
         console.log("(componentDidMount)Could not fetch the data:", err)
       );
     axios
-      .get("https://api.github.com/users/nataliastewart/followers")
+      .get(
+        "https://cors-anywhere.herokuapp.com/https://api.github.com/users/nataliastewart/followers"
+      )
       .then((res) => {
         // console.log("Followers data:", res);
         this.setState({
