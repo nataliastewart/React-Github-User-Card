@@ -1,0 +1,42 @@
+import React from "react";
+import "./App.css";
+import UsersList from "./components/UsersList";
+import axios from "axios";
+
+class App extends React.Component {
+  constructor() {
+    //first phase
+    super();
+    this.state = {
+      profile: {},
+      followers: [],
+    };
+    console.log("Constructor is running");
+  }
+
+  componentDidMount() {
+    //fetching data here
+    axios
+      .get("https://api.github.com/users/nataliastewart")
+      .then((res) =>
+        // console.log("response: ", res)
+        this.setState({
+          profile: res.data,
+        })
+      )
+      .catch((err) =>
+        console.log("(componentDidMount)Could not fetch the data:", err)
+      );
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <UsersList profile={this.state.profile} />
+        {/* <header className="App-header"></header> */}
+      </div>
+    );
+  }
+}
+
+export default App;
