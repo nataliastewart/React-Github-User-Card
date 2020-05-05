@@ -27,6 +27,14 @@ class App extends React.Component {
       .catch((err) =>
         console.log("(componentDidMount)Could not fetch the data:", err)
       );
+    axios
+      .get("https://api.github.com/users/nataliastewart/followers")
+      .then((res) => {
+        console.log("Followers data:", res);
+      })
+      .catch((err) => {
+        console.log("Followers api error:", err);
+      });
   }
 
   render() {
