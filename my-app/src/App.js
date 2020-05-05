@@ -30,7 +30,10 @@ class App extends React.Component {
     axios
       .get("https://api.github.com/users/nataliastewart/followers")
       .then((res) => {
-        console.log("Followers data:", res);
+        // console.log("Followers data:", res);
+        this.setState({
+          followers: res.data,
+        });
       })
       .catch((err) => {
         console.log("Followers api error:", err);
@@ -40,8 +43,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <UsersList profile={this.state.profile} />
-        {/* <header className="App-header"></header> */}
+        <UsersList
+          profile={this.state.profile}
+          followers={this.state.followers}
+        />
       </div>
     );
   }
